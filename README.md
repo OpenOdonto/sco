@@ -1,1 +1,1 @@
-# SCO - *S*istema para *C*onsultório *O*dontológico
+# SCO - **S**istema para **C**onsultório **O**dontológico
