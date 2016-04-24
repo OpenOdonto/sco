@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" template="/template/layout.xhtml">
+	<ui:define name="header">
+	    <ui:decorate template="/template/header.xhtml">
+	        <ui:define name="menu" />
+	    </ui:decorate>   
+	</ui:define>
+	<ui:define name="content">
+	    <link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/css/login.css"	type="text/css" />
+	    <div align="center">
+	        <h:panelGroup layout="block" styleClass="oo-login-frame">
+	            <h:panelGroup layout="block" style="width : 70%;padding-top : 32px" >
+	                <h:graphicImage value="/images/Stomatologist-icon.png" style="padding-bottom: 20px" />
+	                <h:panelGroup layout="block" class="bordaBox">
+	                    <b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
+	                    	<h:panelGroup layout="block" styleClass="oo-login-field-area conteudo">
+	                    	    <a4j:form id="LoginForm">
+	                    	        <a4j:jsFunction name="acaoLogar" action="#{login.acaoAutenticarUsuario}" />
+	                    	        <a4j:keepAlive beanName="login"/>
+	                    	        <h:panelGroup layout="block" style="width : 75%">
+	                    	            <rich:spacer height="32px" />
+									    <rich:message id="messageLogin" for="messageLogin" styleClass="oo-messages"/>
+									    <h:panelGrid columns="3">
+										    <h:outputLabel value="#{msg.loginUsuario}" for="username" />
+										    <h:outputText  value=" : " />
+										    <h:inputText id="username" value="#{login.usuario.user}" />
+										    <h:outputLabel value="#{msg.loginSenha}" for="pwd" />
+										    <h:outputText value=" : " />
+										    <h:inputSecret id="pwd" value="#{login.usuario.senha}" onkeypress="if(doEnter(event)){acaoLogar();}" />
+									    </h:panelGrid>
+									    <rich:spacer height="16" />
+									    <div align="right">
+									        <a4j:commandButton value="logar" action="#{login.acaoAutenticarUsuario}" style=" width : 96px;" reRender="formShowLogin" />
+									    </div>
+									    <rich:spacer height="16" />
+	                    	        </h:panelGroup>
+	                    	    </a4j:form>
+	                        </h:panelGroup>
+	                    <b class="b4"></b><b class="b3"></b><b class="b2"></b><b class="b1"></b>	                    	                
+	                </h:panelGroup>
+	            </h:panelGroup>
+	        </h:panelGroup>
+	    </div>
+	</ui:define>
+	<ui:define name="footer">
+	    <ui:include src="/template/footer.xhtml" />
+	</ui:define>
+</ui:composition>

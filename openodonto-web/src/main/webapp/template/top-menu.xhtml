@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	<rich:dropDownMenu>
+		<f:facet name="label">
+			<h:panelGrid cellpadding="0" cellspacing="0" columns="2" style="vertical-align:middle;">
+				<h:graphicImage value="/images/menu-cadastro-deco-36x36.png" />
+				<h:outputText styleClass="oo-dropdow-menu-title" value="#{msg.cadastro}" />
+			</h:panelGrid>
+		</f:facet>
+		<rich:menuItem submitMode="ajax" action="managePaciente">
+			<h:outputText value="#{msg.cadastroPaciente}" />
+		</rich:menuItem>
+		<rich:menuGroup value="#{msg.manageAnamneseMenugroup}" >
+			<rich:menuItem submitMode="ajax" action="manageQuestao">
+				<h:outputText value="#{msg.manageAnamneseMenuQuestoes}" />
+			</rich:menuItem>			
+			<rich:menuItem submitMode="ajax" action="manageQuestionario">
+				<h:outputText value="#{msg.manageAnamneseMenuQuestionario}" />
+			</rich:menuItem>
+		</rich:menuGroup>
+		<rich:menuItem submitMode="ajax" action="manageDentista">
+			<h:outputText value="#{msg.cadastroDentista}" />
+		</rich:menuItem>
+		<rich:menuItem submitMode="ajax" action="manageProduto">
+			<h:outputText value="#{msg.cadastroProduto}" />
+		</rich:menuItem>
+		<rich:menuItem submitMode="ajax" action="manageFornecedor">
+			<h:outputText value="#{msg.cadastroFornecedor}" />
+		</rich:menuItem>
+		<rich:menuItem submitMode="ajax" action="managePrestador">
+			<h:outputText value="#{msg.cadastroPrestador}" />
+		</rich:menuItem>
+		<rich:menuItem submitMode="ajax" action="manageUsuario">
+			<h:outputText value="#{msg.cadastroUsuario}" />
+		</rich:menuItem>
+		<rich:menuItem submitMode="ajax" action="manageProcedimento">
+			<h:outputText value="#{msg.cadastroProcedimento}" />
+		</rich:menuItem>
+	</rich:dropDownMenu>
+	<div class="oo-dropdow-menu-divisor" />
+	<rich:dropDownMenu>
+		<f:facet name="label">
+			<h:panelGrid cellpadding="0" cellspacing="0" columns="2" style="vertical-align:middle">
+				<h:graphicImage value="/images/menu-help-deco-36x36.png" />
+				<h:outputText styleClass="oo-dropdow-menu-title" value="#{msg.ajuda}" />
+			</h:panelGrid>
+		</f:facet>
+	    <rich:menuItem submitMode="none">
+			<h:outputText value="#{msg.ajudaAtendimento}" />
+		</rich:menuItem>
+	</rich:dropDownMenu>
+	<div class="oo-dropdow-menu-divisor" />
+	<ui:include src="auth-status.xhtml" />
+</ui:composition>

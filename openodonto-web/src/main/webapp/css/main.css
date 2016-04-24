@@ -1,0 +1,97 @@
+{
+font: normal 12px Tahoma,Arial ,Verdana;
+color:#333333;
+}
+
+input[type="text"],
+textarea[type="textarea"],
+textarea,
+input[type="password"],
+select{
+	font-size: 14px;
+}
+
+.oo-messages{
+	font-weight:bold;
+	font-size:10;
+	color:red;
+}
+
+.oo-negrito{
+	font-weight:bold;
+}
+
+.oo-index-questionario-anamnese{
+	font-weight:bold;
+	font-size: 14px;
+}
+
+.oo-query-time-messages{
+	width : 120px;
+	font-size : 9px	
+}
+
+.oo-required-label{
+	color:red;
+}
+
+.oo-validation-messages{
+	font-weight:bold;
+	font-size:12;
+	color:red;
+}
+
+.oo-ajaxload{
+	background-image: url('../images/transparent-back-menu.png');
+	font-size : 12px;
+	font-weight: bold;
+	color: white;
+}
+
+.oo-home-msg{
+	font-weight: bold;
+	line-height: 30px ;
+	font-size : 24px
+}
+
+.oo-tabpanel{
+	background-color : transparent;
+}
+
+.oo-crud-decore-panel{
+	width : 90%;
+	background-color : white;
+	display : block;
+}
+
+.oo-border-none{
+	border : none;
+}
+
+.oo-default-cursor{
+	cursor : default;
+}
+
+.oo-odontograma-numero-dente{
+	font-size:14px;
+	font-weight:bold;
+}
+
+.oo-workpanel-facet-header-title{
+	color:white;
+	font-size:20px;
+	font-weight:bold;
+}
+
+.oo-odontograma-procedimentos{
+	font-size:14px;
+}
+
+.oo-panel-body-tgg{
+	height : 32px;
+	padding : 0px;
+}
+
+#modalStatusContentTable td{
+	padding : 1px; 
+}

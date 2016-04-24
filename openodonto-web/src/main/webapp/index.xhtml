@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" template="/template/template.xhtml">
+	<ui:param name="workPanel" value="#{msg.home}" />
+	<ui:param name="formName" value="formHome" />
+	<ui:define name="work">
+	    <div align="center">
+	        <h:panelGrid columns="1" style="text-aligin : center">
+	            <h:graphicImage value="/images/home-256x256.png" />
+			    <h:panelGroup layout="block" style="text-align : center">
+			         <h:outputText value="#{msg.boasVindas}" styleClass="oo-home-msg"/>
+			    </h:panelGroup>								
+	        </h:panelGrid>
+	    </div>
+	</ui:define>	
+</ui:composition>

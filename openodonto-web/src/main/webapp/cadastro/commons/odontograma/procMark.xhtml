@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:oo="http://code.google.com/p/openodonto"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	<ui:param name="rootPos" value="#{up ? 'bottom : 58px' : down ? 'top : 60px' : ''}" />
+	<h:panelGroup rendered="#{show}">
+		<h:graphicImage rendered="#{left ? meta.distal > 0 : meta.mesial > 0}" value="#{msg.odontogramaRedPointImg}" style="border-style: none;position : absolute;top : 20px" />
+		<h:graphicImage rendered="#{meta.lingual > 0}" value="#{msg.odontogramaRedPointImg}" style="border-style: none;position : absolute ; left : 20px" />
+		<h:graphicImage rendered="#{right ? meta.distal > 0 : meta.mesial > 0}" value="#{msg.odontogramaRedPointImg}" style="border-style: none;position : absolute;top : 20px;left : 40px" />
+		<h:graphicImage rendered="#{meta.vestibular > 0}" value="#{msg.odontogramaRedPointImg}" style="border-style: none;position : absolute;top : 40px ;left : 20px"/>
+		<h:graphicImage rendered="#{meta.oclusal > 0}" value="#{msg.odontogramaRedPointImg}" style="border-style: none;position : absolute;top : 20px;left : 20px" />
+		<h:graphicImage rendered="#{meta.root > 0}" value="#{msg.odontogramaRedPointImg}" style="border-style: none;position : absolute; #{rootPos} ; left : 20px" />
+	</h:panelGroup>
+</ui:composition>

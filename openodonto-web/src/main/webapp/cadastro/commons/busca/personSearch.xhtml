@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	<h:panelGrid columns="1">
+		<h:outputLabel value="#{msg.ooCodigo}" for="codigoPerson" style="top: 2px; position: relative;" />
+		<h:panelGrid columns="2" style="top : 4px ;position : relative">
+	        <h:commandButton image="#{msg.imgBotaoPesquisarPessoa}" onclick="Richfaces.showModalPanel('#{searchName}', {top:'32px'})" style="padding-right : 4px;margin-bottom : 2px" value="#{msg.acaoPesquisar}" />
+		    <h:inputText id="codigoPerson" readonly="true" disabled="true" value="#{codigo}" style=" width : 130px;" />
+		</h:panelGrid>					
+	</h:panelGrid>
+</ui:composition>

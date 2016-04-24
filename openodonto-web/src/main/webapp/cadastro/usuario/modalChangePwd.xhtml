@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	<rich:modalPanel id="painelAlterarSenha" autosized="true" width="350" height="100">
+	    <f:facet name="header">
+		    <h:outputText value="#{msg.manterUsuariosChangePwd}" />
+        </f:facet>
+        <f:facet name="controls">
+            <h:panelGroup>
+				<a4j:commandButton image="#{msg.imgBotaoFechar}" value="#{msg.acaoFechar}" id="hidelinkChangePwd" styleClass="hidelink" ajaxSingle="true">
+					<rich:componentControl for="painelAlterarSenha" attachTo="hidelinkChangePwd" operation="hide" event="onclick"/>
+				</a4j:commandButton>
+            </h:panelGroup>
+        </f:facet>
+		<a4j:form  id="formAlterarSenha">
+		    <a4j:jsFunction name="change" requestDelay="100" reRender="gridPwds" action="#{manterUsuario.managePassword.acaoMudarSenha}" oncomplete="if(#{manterUsuario.managePassword.sucessChange}){Richfaces.hideModalPanel('painelAlterarSenha');}" />
+			<rich:panel>
+			    <h:panelGrid columns="1" id="gridMessage">
+			        <rich:messages for="messageEditTelefone" id="messageEditTelefone" styleClass="oo-validation-messages" />
+			    </h:panelGrid>
+				<h:panelGrid columns="2" id="gridPwds">
+				    <h:outputLabel for="entradaSenhaAtual" value="#{msg.manterUsuariosSenhaAtual}: " />
+				    <h:inputSecret id="entradaSenhaAtual" value="#{manterUsuario.managePassword.senha}" onkeyup="if(doEnter(event)){change();return false;}" redisplay="true"  />				
+				    <h:outputLabel for="entradaNovaSenha" value="#{msg.manterUsuariosNovaSenha}: " />
+				    <h:inputSecret id="entradaNovaSenha" value="#{manterUsuario.managePassword.novaSenha}" onkeyup="if(doEnter(event)){change();return false;}" redisplay="true" />
+				    <h:outputLabel for="entradaConfirmarNovaSenha" value="#{msg.manterUsuariosConfirmarNovaSenha}: " />
+				    <h:inputSecret id="entradaConfirmarNovaSenha" value="#{manterUsuario.managePassword.confirmaNovaSenha}" onkeyup="if(doEnter(event)){change();return false;}" redisplay="true" />
+			    </h:panelGrid>
+		        <div align="right" style="padding-top: 16px">
+				    <h:panelGroup>
+				        <a4j:commandButton onclick="change();return false;" value="#{msg.manterUsuariosAcaoAlterar}" />
+				        <rich:spacer width="16px" />
+				        <a4j:commandButton id="btnCancelar" action="#{manterUsuario.managePassword.acaoCancelar}" oncomplete="Richfaces.hideModalPanel('painelAlterarSenha')" value="#{msg.manterUsuariosAcaoCancelar}" ajaxSingle="true"/>
+				    </h:panelGroup>
+				</div>
+			</rich:panel>
+			</a4j:form>			
+	</rich:modalPanel>
+</ui:composition>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <f:view locale="pt_br" />
+    <f:loadBundle var="msg" basename="br.ueg.openodonto.visao.i18n.messages" />
+    <ui:param name="list" value="#{manterListagem.cache}" />
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title"><h:outputText value="#{msg.openOdontoTitle}" /></ui:insert></title>
+        <link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/css/main.css" type="text/css" />
+        <script src="#{facesContext.externalContext.request.contextPath}/js/main.js" type="text/javascript" />
+    </head>
+    <body style="background-color: #fafbfc !important;">
+        <div id="master">
+            <div id="work">
+                <ui:insert name="body"/>
+            </div>
+        </div>
+    </body>
+</html>

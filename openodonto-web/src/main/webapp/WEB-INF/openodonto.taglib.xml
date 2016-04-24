@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE facelet-taglib PUBLIC "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN" "http://java.sun.com/dtd/facelet-taglib_1_0.dtd">
+<facelet-taglib>
+	<namespace>http://code.google.com/p/openodonto</namespace>
+	<tag>
+		<tag-name>search</tag-name>
+		<source>../cadastro/commons/busca/search.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>personSearch</tag-name>
+		<source>../cadastro/commons/busca/personSearch.xhtml</source>
+	</tag>
+	<tag>
+	    <tag-name>selectableSearch</tag-name>
+	    <source>../cadastro/commons/busca/selecionavel/selectableSearch.xhtml</source>
+	</tag>
+	<tag>
+	    <tag-name>label</tag-name>
+	    <source>../cadastro/commons/crud/label.xhtml</source>
+	</tag>
+	<tag>
+	    <tag-name>toothMap</tag-name>
+	    <source>../cadastro/commons/odontograma/toothMap.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>map</tag-name>		
+		<component>			
+			<component-type>mapComponent</component-type>
+		</component>
+	</tag>
+	<tag>
+		<tag-name>area</tag-name>
+		<source>../cadastro/commons/odontograma/toothArea.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>root</tag-name>
+		<source>../cadastro/commons/odontograma/rootArea.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>procMark</tag-name>
+		<source>../cadastro/commons/odontograma/procMark.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>menuAspecto</tag-name>
+		<source>../cadastro/commons/odontograma/menuAspecto.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>pluginToolTip</tag-name>
+		<source>../cadastro/commons/crud/pluginToolTip.xhtml</source>
+	</tag>
+	<tag>
+		<tag-name>maskMoney</tag-name>
+		<source>../cadastro/commons/crud/maskMoney.xhtml</source>
+	</tag>
+</facelet-taglib>

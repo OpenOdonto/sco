@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:panelGroup layout="block">
+		<a4j:status id="status"
+			onstart="Richfaces.showModalPanel('modalStatus');"
+			onstop="Richfaces.hideModalPanel('modalStatus');" />
+		<rich:modalPanel id="modalStatus" moveable="false" autosized="true" resizeable="false" styleClass="oo-ajaxload-modal">
+		    <h:panelGrid styleClass="oo-ajaxload" columns="4">
+		    	<h:graphicImage value="#{msg.ajaxLoadImg}" width="24" height="24" style="width : 24px ; height : 24px " />
+		    	<rich:spacer width="4px" />		         
+		        <h:outputText value="Carregando"  />
+		        <rich:spacer width="4px" />
+			</h:panelGrid>
+		</rich:modalPanel>
+	</h:panelGroup>
+</ui:composition>

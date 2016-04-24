@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:oo="http://code.google.com/p/openodonto"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" template="/template/template.xhtml">
+	<ui:define name="title">
+	    <h:outputText value="#{msg.manterDentistas}" />
+	</ui:define>
+	<ui:param name="workPanel" value="#{msg.manterDentistas}" />
+	<ui:param name="mBean"     value="#{manterDentista}" />
+	<ui:param name="formName"  value="#{manterDentista.view.formName}" />
+	<ui:define name="work">
+	    <a4j:keepAlive beanName="manterDentista"/>
+	    <a4j:jsFunction name="popUp" action="#{manterDentista.acaoShowed}" oncomplete="exibirMensagem('#{manterDentista.view.popUpMsg}')"/>
+	    <div align="center">
+			<rich:panel styleClass="oo-crud-decore-panel" >				
+				<center>
+					<h:panelGrid columns="1">			
+						<h:panelGrid columns="2">
+						    <oo:personSearch codigo="#{manterDentista.dentista.codigo}" searchName="painelBuscaPessoa" />
+							<h:panelGrid columns="1">
+				    			<oo:label value="#{msg.ooNome}" for="entradaNome"  required="true" />
+								<h:inputText id="entradaNome" value="#{manterDentista.dentista.nome}" style="width : 310px;"	/>
+							</h:panelGrid>           
+							<h:panelGrid columns="1">
+				    			<oo:label value="#{msg.ooCro}" for="entradaCro" required="true"/>
+								<h:inputText value="#{manterDentista.dentista.cro}" onkeypress="return digitarNumero(this, event)" id="entradaCro" style="width : 160px;"/>
+							</h:panelGrid>				
+							<h:panelGrid columns="1">	
+				    			<oo:label value="#{msg.ooEspecialidade}" for="entradaEspecialidade" required="true" />
+								<h:inputText id="entradaEspecialidade" value="#{manterDentista.dentista.especialidade}" style=" width : 310px;" />
+							</h:panelGrid>				
+						</h:panelGrid>			
+					</h:panelGrid>
+				</center>
+			</rich:panel>
+		</div>	    
+	</ui:define>
+	<ui:define name="extraContent">
+        <ui:include src="tabs.xhtml" />
+        <ui:include src="/cadastro/commons/crud/actions.xhtml"/>
+    </ui:define>
+    <ui:define name="outOfFormContent">
+        <ui:include src="/cadastro/commons/contato/edit.xhtml" />
+        <oo:search search="#{mBean.search}" />
+        <oo:search search="#{mBean.personSearch}" />
+    </ui:define>
+</ui:composition>

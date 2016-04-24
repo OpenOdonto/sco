@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+  	<a4j:support event="onRowClick" reRender="#{formName}"  oncomplete="Richfaces.hideModalPanel('#{search.name}');message()">
+   	    <f:setPropertyActionListener value="#{bean}" target="#{search.selected}" />
+   	</a4j:support>
+   	<ui:insert name="columns">
+   	    <ui:include src="columns.xhtml" />
+   	</ui:insert>
+</ui:composition>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="basic.xhtml">
+	<ui:param name="title" value="#{msg.openOdonto}" />
+	<ui:define name="body">
+	    <a4j:region id="ajaxRegion">
+	        <ui:insert name="modalAjaxLoad">
+	            <ui:include src="/loading.xhtml" />
+	        </ui:insert>
+	    	<ui:insert name="header" />
+	    	<ui:insert name="content" />
+	        <ui:insert name="footer" />
+	    </a4j:region>
+	</ui:define>
+</ui:composition>

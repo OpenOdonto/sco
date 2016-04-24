@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	<rich:modalPanel id="painelAlterarTelefone" autosized="true" width="300" height="100">
+	    <f:facet name="header">
+		    <h:outputText value="#{msg.manageContactChangePhone}" />
+        </f:facet>	
+		<a4j:form  id="formAlterarTelefone">
+		    <a4j:jsFunction name="save" action="#{mBean.manageTelefone.acaoEditar}" reRender="listaTelefones" oncomplete="if(#{mBean.manageTelefone.sucessEdit}){Richfaces.hideModalPanel('painelAlterarTelefone');}" />
+			<rich:panel>
+				<h:panelGrid columns="3">
+					<h:panelGrid columns="1">
+						<h:outputLabel value="#{msg.manageContactTipo}" for="tipoTelefonePainel" />
+						 <h:selectOneMenu id="tipoTelefonePainel" value="#{mBean.manageTelefone.editType}"  converter="simpleEntityConverter">
+							<t:selectItems value="#{list.ALIAS_TIPO_TEL.dominio}" var="tipo" itemLabel="#{tipo.descricao}" itemValue="#{tipo}" />
+						</h:selectOneMenu>
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<h:outputLabel value="#{msg.manageContactNumero}" for="numeroTelefonePainel" />
+						<h:inputText id="numeroTelefonePainel" value="#{mBean.manageTelefone.editNumber}" onkeypress="if(doEnter(event)){save();return false;}" />
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<a4j:commandButton onclick="save()" value="#{msg.manageContactAcaoSalvar}"/>
+						<a4j:commandButton id="btnCancelar" action="#{mBean.manageTelefone.acaoCancelarEdicao}" reRender="listaTelefones" oncomplete="Richfaces.hideModalPanel('painelAlterarTelefone')" value="#{msg.manageContactAcaoCancelar}" ajaxSingle="true"/>
+				    </h:panelGrid>
+			    </h:panelGrid>
+			    <h:panelGrid columns="1" id="gridMessage">
+			        <rich:message for="messageEditTelefone" id="messageEditTelefone" styleClass="oo-validation-messages" />
+			    </h:panelGrid>
+			</rich:panel>
+			</a4j:form>
+			
+	</rich:modalPanel>
+
+</ui:composition>

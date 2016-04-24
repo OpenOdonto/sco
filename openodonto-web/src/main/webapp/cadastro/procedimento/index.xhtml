@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:oo="http://code.google.com/p/openodonto"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" template="/template/template.xhtml">
+	<ui:define name="title">
+	    <h:outputText value="#{msg.manterProcedimentos}" />
+	</ui:define>
+	<ui:param name="workPanel" value="#{msg.manterProcedimentos}" />
+	<ui:param name="mBean"     value="#{manterProcedimento}" />
+	<ui:param name="formName"  value="#{manterProcedimento.view.formName}" />	
+	<ui:define name="work">		
+	    <a4j:keepAlive beanName="manterProcedimento"/>
+	    <a4j:jsFunction name="popUp" action="#{manterProcedimento.acaoShowed}" oncomplete="exibirMensagem('#{manterProcedimento.view.popUpMsg}')"/>
+	    <div align="center">
+	        <a4j:loadScript src="/js/jquery.price_format.1.3.js" />
+	        <oo:maskMoney name="maskMoney" selector=".maskMoney" time="onload" />
+			<rich:panel styleClass="oo-crud-decore-panel" >				
+				<center>
+					<h:panelGrid columns="1">				
+					    <h:panelGrid columns="3">
+							<h:panelGrid columns="1">
+								<h:outputLabel value="#{msg.ooCodigo}" for="codigoProcedimento" />
+								<h:inputText id="codigoProcedimento" readonly="true" disabled="true" value="#{manterProcedimento.procedimento.codigo}" style=" width : 60px;" />
+							</h:panelGrid>
+							<h:panelGrid columns="1">				
+							    <oo:label value="#{msg.ooNome}" for="entradaNome"  required="true" />
+								<h:inputText id="entradaNome" value="#{manterProcedimento.procedimento.nome}" style="width : 278px;"	/>
+							</h:panelGrid>
+							<h:panelGrid columns="1">
+							    <oo:label value="#{msg.procedimentoValor}" for="entradaValor"  required="true"/>
+							    <h:inputText id="entradaValor" value="#{manterProcedimento.procedimento.valor}" style=" width : 118px;" styleClass="maskMoney">
+							        <f:convertNumber type="currency" />
+							    </h:inputText>
+							</h:panelGrid>
+					    </h:panelGrid>
+					    <h:panelGrid id="gridTextBox">       
+                            <h:panelGrid columns="1">
+                                <oo:label value="#{msg.procedimentoDescricao}" for="inTextBoxObs"/>
+                                <h:inputTextarea id="inTextBoxObs" value="#{manterProcedimento.procedimento.descricao}" style="width : 480px; height : 96px;" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+				    </h:panelGrid>
+				</center>
+			</rich:panel>
+	    </div>	   
+	</ui:define>
+	<ui:define name="extraContent">
+        <ui:include src="/cadastro/commons/crud/actions.xhtml"/>
+    </ui:define>
+    <ui:define name="outOfFormContent">
+        <oo:search search="#{mBean.search}" />
+    </ui:define>
+</ui:composition>
