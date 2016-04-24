@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:oo="http://code.google.com/p/openodonto"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	<a4j:commandLink action="#{manage.acaoManageProcedimento}"
+		reRender="formProcedimentosOdontograma,procedimentosOdontogramaMeta" id="root-#{idroot}" 
+		oncomplete="Richfaces.showModalPanel('procedimentosOdontograma',{top:'32px'})"
+		onmouseover="restoreBg($('#{formName}:#{idroot}'),'#{cxName}#{bgDenteRootSelected}');this.style.cursor='pointer';"
+		onmouseout="restoreBg($('#{formName}:#{idroot}'),'#{cxName}#{bgDenteRooImg}');"
+		style="#{style}" title="#{meta.procedimentos['root']} procedimento(s).">
+		<h:graphicImage rendered="#{show and meta.normal}" id="#{idroot}" value="#{bgDenteRooImg}" style="border-style: none;position:relative ; z-index : 1" />		
+		<f:setPropertyActionListener value="#{numero}" target="#{manage.numero}">
+			<f:convertNumber integerOnly="true" type="number" maxIntegerDigits="2" minIntegerDigits="1" />
+		</f:setPropertyActionListener>
+		<f:setPropertyActionListener value="root" target="#{manage.face}" />
+	</a4j:commandLink>
+	<h:graphicImage rendered="#{show and !meta.normal}" id="#{idroot}-disabled" value="#{bgDenteRootDisableImg}"/>
+</ui:composition>

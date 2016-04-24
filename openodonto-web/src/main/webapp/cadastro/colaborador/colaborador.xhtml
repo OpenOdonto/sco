@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:oo="http://code.google.com/p/openodonto"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j" template="/template/template.xhtml">
+	<ui:param name="mBean"     value="#{manterColaborador}" />
+	<ui:param name="formName"  value="#{manterColaborador.view.formName}" />
+	<ui:define name="work">
+	    <a4j:loadScript src="/js/jquery.maskedinput-1.2.2.js" />
+	    <a4j:keepAlive beanName="manterColaborador"/>
+	    <a4j:jsFunction name="popUp" action="#{manterColaborador.acaoShowed}" oncomplete="exibirMensagem('#{manterColaborador.view.popUpMsg}')"/>
+	    <div align="center">
+			<rich:panel styleClass="oo-crud-decore-panel" >				
+				<center>
+					<h:panelGrid columns="1">
+					    <a4j:jsFunction name="changePType" reRender="gridDocumento" />
+                        <h:panelGrid columns="2">
+                            <oo:personSearch codigo="#{manterColaborador.colaborador.codigo}" searchName="painelBuscaPessoa" />
+                            <h:panelGrid columns="1">
+                                <oo:label value="#{msg.ooNome}:" for="entradaNome" required="true" />
+                                <h:inputText id="entradaNome" value="#{manterColaborador.colaborador.nome}" style=" width : 240px;"/>
+                            </h:panelGrid>
+                            
+                           <h:panelGrid columns="1">
+                              <h:outputLabel for="radioTipoPessoa" id="labelRadioTipoPessoa" value="#{msg.tipoPessoa}:" />
+                              <h:selectOneRadio onchange="changePType()" id="radioTipoPessoa" value="#{manterColaborador.tipoPessoa}" layout="lineDirection" converter="simpleEntityConverter">
+                                  <t:selectItems id="itemsPessoa" value="#{manterListagem.cache['br.ueg.openodonto.dominio.constante.TipoPessoa'].dominio}" var="tipo" itemLabel="#{tipo.descricao}" itemValue="#{tipo}" />
+                              </h:selectOneRadio>
+                           </h:panelGrid>
+
+                           <h:panelGrid columns="1" id="gridDocumento">
+                               <h:panelGroup rendered="#{manterColaborador.tipoPessoa.pf}">
+							       <h:outputLabel id="labelEntradaCpf" for="entradaCpf" value="#{msg.ooCpf}:" style="color : red" />
+			                       <rich:spacer width="8" />
+			                       <rich:message id="messageEntradaCpf" for="entradaCpf" styleClass="oo-validation-messages" />
+                               </h:panelGroup>
+                               <h:inputText rendered="#{manterColaborador.tipoPessoa.pf}" id="entradaCpf" value="#{manterColaborador.colaborador.cpf}" style=" width : 240px;">
+                                   <rich:jQuery id="maskCpf" name="maskCpf" selector="#entradaCpf" query="mask('999.999.999-99')" timing="onload" />
+                               </h:inputText>
+                               <h:panelGroup>                               
+                                   <h:outputLabel rendered="#{manterColaborador.tipoPessoa.pj}" id="labelEntradaCnpj" for="entradaCnpj" value="#{msg.ooCnpj}:" style="color : red" />
+			                       <rich:spacer width="8" />
+			                       <rich:message id="messageEntradaCnpj" for="entradaCnpj" styleClass="oo-validation-messages" />
+                               </h:panelGroup>
+                               <h:inputText rendered="#{manterColaborador.tipoPessoa.pj}" id="entradaCnpj" value="#{manterColaborador.colaborador.cnpj}" style=" width : 240px;" >
+                                   <rich:jQuery id="maskCnpj" name="maskCnpj" selector="#entradaCnpj" query="mask('99.999.999/9999-99')" timing="onload" />
+                               </h:inputText>
+                           </h:panelGrid>
+					    </h:panelGrid>
+					</h:panelGrid>
+				</center>
+			</rich:panel>
+		</div>	
+	</ui:define>
+	<ui:define name="extraContent">
+        <ui:include src="tabs.xhtml" />
+        <ui:include src="/cadastro/commons/crud/actions.xhtml"/>
+    </ui:define>
+    <ui:define name="outOfFormContent">
+        <ui:include src="/cadastro/commons/contato/edit.xhtml" />
+        <oo:search search="#{mBean.search}" />
+        <oo:search search="#{mBean.personSearch}" />
+        <oo:selectableSearch search="#{mBean.searchProduto}" listaAssociada="listaProdutos" />
+    </ui:define>
+</ui:composition>

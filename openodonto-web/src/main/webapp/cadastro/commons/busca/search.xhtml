@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	<rich:modalPanel id="#{search.name}" autosized="true" resizeable="false" onshow="pesquisar#{search.name}()">
+	    <f:facet name="header">
+		    <h:outputText value="#{search.title}" />
+        </f:facet>
+        <f:facet name="controls">
+            <h:panelGroup>
+				<a4j:commandButton image="#{msg.imgBotaoFechar}" reRender="#{formName}" value="#{msg.acaoFechar}" id="hidelink#{search.name}" styleClass="hidelink">
+					<rich:componentControl for="#{search.name}" attachTo="hidelink#{search.name}" operation="hide" event="onclick"/>
+				</a4j:commandButton>
+            </h:panelGroup>
+        </f:facet>
+        <rich:messages id="#{search.displayer.output}" for="#{search.displayer.output}"  styleClass="oo-validation-messages" />
+        <rich:panel id="searchMasterPainel#{search.name}" >
+		    <a4j:form  id="formSearch#{search.name}">
+		        <a4j:jsFunction id="pesquisar#{search.name}" name="pesquisar#{search.name}" reRender="lista,dataScroller" action="#{search.search}" requestDelay="100"  />
+		        <rich:dataGrid value="#{search.searchable.masks}" rendered="#{not empty search.searchable.masks}" var="mask" columnClasses="oo-border-none" styleClass="oo-border-none">
+		            <rich:jQuery query="#{mask.query}" timing="onload" selector=".#{mask.seletor}" />		        
+		        </rich:dataGrid>
+		        <rich:panel>
+		            <f:facet name="header">
+		                <h:outputText value="#{msg.buscaFiltrosHeader}:" />
+		            </f:facet>
+		            <div align="center">
+		                <ui:insert name="filters">
+		                    <ui:include src="filters.xhtml" />
+		                </ui:insert>
+				        <div align="right" style="padding-top: 16px">
+				            <ui:insert name="buttons">
+				                <ui:include src="buttons.xhtml" />
+				            </ui:insert>
+						</div>
+			        </div>
+				</rich:panel>
+				<h:panelGrid style="text-align : left" columns="2">					    
+				    <rich:message id="buscar#{search.name}" for="buscar#{search.name}" style=" width : 280px;"/>
+				    <rich:message id="queryTime#{search.name}" for="queryTime#{search.name}" styleClass="oo-query-time-messages"/>
+				</h:panelGrid>
+				<rich:panel>
+					<f:facet name="header">
+						<h:outputText value="#{msg.buscaResultadosHeader}: " />
+					</f:facet>
+					<ui:insert name="resultTable">
+					    <ui:decorate template="resultTable.xhtml"/>
+					</ui:insert>
+				</rich:panel>
+		    </a4j:form>
+		</rich:panel>
+	</rich:modalPanel>
+</ui:component>

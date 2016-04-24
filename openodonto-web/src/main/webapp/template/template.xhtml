@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" template="layout.xhtml">
+	<ui:define name="header">	    
+	    <ui:include src="header.xhtml" />
+	</ui:define>
+	<ui:define name="content">
+	<a4j:form ajaxSubmit="true" id="${formName}">
+		<h:panelGroup style="width : 100%" layout="block">
+			<rich:message id="output" for="output" style=" height : 81px;" />
+			<rich:panel style=" width : 100%;background-color : transparent">
+				<f:facet name="header">
+					<h:outputText value="${workPanel}" styleClass="oo-workpanel-facet-header-title" />
+				</f:facet>
+				<ui:insert name="work" />
+			</rich:panel>
+		</h:panelGroup>
+		<ui:insert name="extraContent"/>
+	</a4j:form>
+	<ui:insert name="outOfFormContent" />
+	</ui:define>
+	<ui:define name="footer">
+	    <ui:include src="footer.xhtml" />
+	</ui:define>
+</ui:composition>

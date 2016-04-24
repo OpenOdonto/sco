@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:oo="http://code.google.com/p/openodonto"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+    <rich:contextMenu event="oncontextmenu" attachTo="#{attach}" submitMode="ajax" style="z-index : 2">
+    	<rich:menuItem value="Extraido" action="#{manterPaciente.manageOdontograma.acaoMudarAspecto}" reRender="block-#{numero}" >
+   			<f:facet name="icon">    			
+           		<h:graphicImage value="#{manage.viewMetaAdapter[numero].extraido ? msg.imgMenuItemChecked : msg.imgMenuItemNChecked}" />            	
+           	</f:facet>
+    	    <f:setPropertyActionListener target="#{manage.aspecto}" value="extraido" />
+			<f:setPropertyActionListener target="#{manage.numero}" value="#{numero}">
+		    	<f:convertNumber integerOnly="true" type="number" maxIntegerDigits="2" minIntegerDigits="1" />
+			</f:setPropertyActionListener>
+    	</rich:menuItem>
+        <rich:menuItem value="Implante" action="#{manage.acaoMudarAspecto}" reRender="block-#{numero}" >
+   			<f:facet name="icon">    			
+           		<h:graphicImage value="#{manage.viewMetaAdapter[numero].implante ? msg.imgMenuItemChecked : msg.imgMenuItemNChecked}" />            	
+           	</f:facet>
+        	<f:setPropertyActionListener target="#{manage.aspecto}" value="implante" />
+			<f:setPropertyActionListener target="#{manage.numero}" value="#{numero}">
+		    	<f:convertNumber integerOnly="true" type="number" maxIntegerDigits="2" minIntegerDigits="1" />
+			</f:setPropertyActionListener>
+        </rich:menuItem>
+        <rich:menuItem value="Normal" action="#{manage.acaoMudarAspecto}" reRender="block-#{numero}" >
+   			<f:facet name="icon">    		    
+           		<h:graphicImage value="#{manage.viewMetaAdapter[numero].normal ? msg.imgMenuItemChecked : msg.imgMenuItemNChecked}" />            	
+           	</f:facet>
+        	<f:setPropertyActionListener target="#{manage.aspecto}" value="normal" />
+			<f:setPropertyActionListener target="#{manage.numero}" value="#{numero}">
+		    	<f:convertNumber integerOnly="true" type="number" maxIntegerDigits="2" minIntegerDigits="1" />
+			</f:setPropertyActionListener>
+        </rich:menuItem>
+	</rich:contextMenu>
+</ui:composition>	

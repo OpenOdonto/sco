@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	<rich:dataTable width="590px" onRowMouseOver="dataTabeMouseOver(this)" onRowMouseOut="dataTabeMouseOut(this,'#{a4jSkin.tableBackgroundColor}')" id="lista" columnsWidth="0*" value="#{search.results}" var="bean" rows="10">
+	    <ui:insert name="tableContent">
+	       <ui:include src="tableContent.xhtml" />
+	    </ui:insert>
+    </rich:dataTable>
+    <rich:spacer height="8" />
+    <rich:datascroller for="lista" maxPages="20" align="center" id="dataScroller"  />
+</ui:composition>

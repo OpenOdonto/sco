@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+    <h:panelGrid columns="4">		
+	    <a4j:commandLink rendered="#{empty facesContext.externalContext.sessionMap.usuarioSessao}" action="login" style="COLOR: #f1f2f3;font-weigth : bold;font-size : 16px">#{msg.login}</a4j:commandLink>
+		<h:graphicImage rendered="#{not empty facesContext.externalContext.sessionMap.usuarioSessao}" value="/images/user-32x32.png" height="24" />
+		<h:outputText rendered="#{not emptyfacesContext.externalContext.sessionMap.usuarioSessao}" value="#{facesContext.externalContext.sessionMap.usuarioSessao.nomeApresentacao}"  style="COLOR: #f1f2f3;font-weigth : bold;font-size : 12px"/>
+		<a4j:commandLink rendered="#{not empty facesContext.externalContext.sessionMap.usuarioSessao}" value="#{msg.logout}" action="#{login.acaoLogout}" style="COLOR: #000000;font-size : 8x"/>
+	</h:panelGrid>
+</ui:composition>	

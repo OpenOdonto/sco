@@ -1,0 +1,28 @@
+.oo-login-frame {
+	top: 130px;
+	color: #154876;
+	width: 640px;
+	height: 480px;
+	font-size: 12px;
+	border: 2px solid #ACBECE;
+	border-collapse: collapse;
+}
+
+.oo-login-field-area {
+	font-weight: bold;
+	color: #154876;
+	width: 280px;
+	font-size: 12px;
+	border-collapse: collapse;
+    background-image: url('../images/transparent-back-menu.png')
+}
+
+.bordaBox {bbackground: ttransparent;width: 294px;}
+.bordaBox .b1,.bordaBox .b2,.bordaBox .b3,.bordaBox .b4,.bordaBox .b1b,.bordaBox .b2b,.bordaBox .b3b,.bordaBox .b4b {display: block;overflow: hidden;font-size: 1px;}
+.bordaBox .b1,.bordaBox .b2,.bordaBox .b3,.bordaBox .b1b,.bordaBox .b2b,.bordaBox .b3b{height: 1px;}
+.bordaBox .b2,.bordaBox .b3,.bordaBox .b4 {background-image: url('../images/transparent-back-menu.png');border-left: 1px solid #ACBECE;border-right: 1px solid #ACBECE;}
+.bordaBox .b1 {margin: 0 5px;background: #ACBECE;}
+.bordaBox .b2 {margin: 0 3px;border-width: 0 2px;}
+.bordaBox .b3 {margin: 0 2px;}
+.bordaBox .b4 {height: 2px;margin: 0 1px;}
+.bordaBox .conteudo {background-image: url('../images/transparent-back-menu.png');padding: 5px;display: block;border-left: 1px solid #ACBECE;border-right: 1px solid #ACBECE;}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:oo="http://code.google.com/p/openodonto"
+	xmlns:a4j="http://richfaces.org/a4j">
+	<rich:panel styleClass="oo-crud-decore-panel">
+        <center>
+            <h:panelGrid id="gridCategoria">
+                <h:panelGrid columns="2">
+	                <h:graphicImage value="#{msg.imgBotaoAdd}" onclick="Richfaces.showModalPanel('painelBuscaQuestao', {top:'32px'})" />
+	                <a4j:commandLink value="#{msg.manterQuestionarioAnamneseAddQuestao}" onclick="Richfaces.showModalPanel('painelBuscaQuestao', {top:'32px'})" />             
+                </h:panelGrid>
+                <h:panelGrid>
+                    <rich:messages id="messageQuestao" for="messageQuestao" styleClass="oo-validation-messages" />
+                </h:panelGrid>
+            </h:panelGrid>
+        </center>
+	</rich:panel>
+	<rich:panel style="border-top: none;" styleClass="oo-crud-decore-panel">
+		<oo:pluginToolTip/>
+		<h:panelGrid columns="1">
+		    <h:outputText value="#{msg.manageAnamneseMenuQuestionario}" styleClass="oo-negrito" />
+		    <rich:orderingList id="listaQuestionario" value="#{mBean.manageQuestao.questoesAdapter}" listWidth="620px" listHeight="320px" var="questao" rowKeyVar="index" converter="questaoConverter" >	    		
+		    	<rich:column width="72px">
+		    		<f:facet name="header">
+		    			<h:outputText value="#{msg.manageAnamneseObrigatoria}" />
+		    		</f:facet>
+		    		<center>
+		    			<h:selectBooleanCheckbox value="#{questao.qqa.obrigatoria}" />
+		    		</center>
+		    	</rich:column>		    			    	
+		    	<rich:column width="48px">
+		    		<f:facet name="header">
+		    			<h:outputText value="#{msg.ooCodigo}" />
+		    		</f:facet>
+		    		<center>
+		    			<h:outputText value="#{questao.qa.codigo}" />
+		    		</center>
+		    	</rich:column>
+		    	<rich:column width="480px">
+		    		<f:facet name="header">
+		    			<h:outputText value="#{msg.manterQuestaoAnamneseQuestao}" />
+		    		</f:facet>		    		
+	    			<t:div onmouseover="tooltip.show('#{questao.qa.pergunta}')" onmouseout="tooltip.hide()">
+	    				<h:outputText value="#{questao.abstractPergunta}"/>
+	    			</t:div>	    						    				
+		    	</rich:column>
+		    	<h:column>
+					<t:div style="display : block">
+						<a4j:commandButton image="#{msg.imgBotaoFechar}" action="#{mBean.manageQuestao.acaoRemoverQuestao(questao)}" reRender="listaQuestionario"/>
+		    		</t:div>
+		    	</h:column>		    			    	
+		    </rich:orderingList>
+		</h:panelGrid>
+	</rich:panel>
+</ui:composition>	

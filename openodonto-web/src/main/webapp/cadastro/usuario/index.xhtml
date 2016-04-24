@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:oo="http://code.google.com/p/openodonto"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" template="/template/template.xhtml">
+	<ui:define name="title">
+	    <h:outputText value="#{msg.manterUsuarios}" />
+	</ui:define>
+	<ui:param name="workPanel" value="#{msg.manterUsuarios}" />
+	<ui:param name="mBean"     value="#{manterUsuario}" />
+	<ui:param name="formName"  value="#{manterUsuario.view.formName}" />
+	<ui:param name="mPwd" value="#{manterUsuario.managePassword}" />
+	<ui:define name="work">
+	    <a4j:keepAlive beanName="manterUsuario"/>
+	    <a4j:jsFunction name="popUp" action="#{manterUsuario.acaoShowed}" oncomplete="exibirMensagem('#{manterUsuario.view.popUpMsg}')"/>
+	    <div align="center">
+			<rich:panel styleClass="oo-crud-decore-panel" >				
+				<center>
+					<h:panelGrid columns="1">						
+						<h:panelGrid columns="2">
+						    <oo:personSearch codigo="#{manterUsuario.usuario.codigo}" searchName="painelBuscaPessoa" />
+							<h:panelGrid columns="1">
+							    <oo:label value="#{msg.ooNome}" for="entradaNome"  required="true"/>
+								<h:inputText id="entradaNome" value="#{manterUsuario.usuario.nome}" style="width : 310px;"	/>
+							</h:panelGrid>           
+							<h:panelGrid columns="1">				
+							    <oo:label value="#{msg.manterUsuariosUsuario}" for="entradaUser" required="true"/>
+								<h:inputText value="#{manterUsuario.usuario.user}"  id="entradaUser" style="width : 160px;"/>
+							</h:panelGrid>				
+							<h:panelGrid columns="1">				
+							    <oo:label value="#{msg.manterUsuariosSenha}" for="entradaSenha" required="true" />
+				                <h:panelGrid columns="3">
+								    <h:inputSecret disabled="#{not mPwd.enableChangePassword}" id="entradaSenha" value="#{mPwd.senhaCadastro}" redisplay="true" style=" width : 280px;" />
+								    <a4j:commandButton 
+								    		disabled="#{mPwd.enableChangePassword}"
+								    		value="#{msg.manterUsuariosChangePwd}"
+								    		image="#{mPwd.enableChangePassword ? msg.imgBotaoMiniDisableEdit : msg.imgBotaoMiniEdit}"
+								    		onclick="Richfaces.showModalPanel('painelAlterarSenha')">
+								        <rich:toolTip value="#{msg.manterUsuariosChangePwd}" />
+								    </a4j:commandButton>
+								</h:panelGrid>
+							</h:panelGrid>				
+						</h:panelGrid>
+					</h:panelGrid>
+				</center>
+			</rich:panel>
+		</div>	    
+	</ui:define>
+	<ui:define name="extraContent">
+        <ui:include src="/cadastro/commons/crud/actions.xhtml"/>
+    </ui:define>
+    <ui:define name="outOfFormContent">
+        <ui:include src="modalChangePwd.xhtml"/>
+        <oo:search search="#{mBean.search}" />
+        <oo:search search="#{mBean.personSearch}" />
+    </ui:define>
+</ui:composition>

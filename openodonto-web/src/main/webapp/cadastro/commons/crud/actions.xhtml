@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	<rich:spacer height="16" />
+	<div align="center">
+		<a4j:jsFunction name="message" oncomplete="if(${mBean.view.displayPopUp}){popUp()}" />
+	    <h:panelGroup layout="block">
+			<a4j:commandButton id="botaoSalvar" action="#{mBean.acaoSalvar}" oncomplete="message()" image="#{msg.imgBotaoSalvar}" value="| #{msg.acaoSalvar} |" reRender="#{formName}"/>
+			<rich:spacer width="16"/>
+			<a4j:commandButton id="botaoPesquisar"  image="#{msg.imgBotaoPesquisar}" onclick="Richfaces.showModalPanel('painelBusca', {top:'32px'})" value="| #{msg.acaoPesquisar} |" />
+			<rich:spacer width="16"/>
+			<a4j:commandButton id="botaoExcluir" disabled="#{not mBean.canDelete}" action="#{mBean.acaoRemoverSim}" oncomplete="message()" image="#{mBean.canDelete ?  msg.imgBotaoExcluir : msg.imgBotaoExcluirDisable}" styleClass="#{mBean.canDelete ? '' : 'oo-default-cursor'}" onclick="if(!confirm('#{msg.DesejaExcluir}')){return false}" value="| #{msg.acaoExcluir} |" reRender="#{formName}">
+			    <rich:toolTip rendered="#{not mBean.canDelete}" value="#{msg.naoPodeRemover}" />
+			</a4j:commandButton>
+			<rich:spacer width="16"/>
+			<a4j:commandButton id="botaoCancelar" action="#{mBean.acaoAtualizar}" image="#{msg.imgBotaoCancelar}" value="| #{msg.acaoCancelar} |" reRender="#{formName}" />												
+	    </h:panelGroup>	
+    </div>
+</ui:composition>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+    <h:panelGrid columns="3">				
+	    <h:outputLabel value="#{value}" for="#{for}" id="label#{for}" styleClass="#{required ? 'oo-required-label' : ''}"/>
+        <rich:spacer width="8" />
+        <rich:message id="message#{for}" for="#{for}" styleClass="oo-validation-messages" />
+    </h:panelGrid>
+</ui:composition>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:oo="http://code.google.com/p/openodonto"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.org/rich"	
+	xmlns:a4j="http://richfaces.org/a4j">
+    <rich:panel styleClass="oo-crud-decore-panel">
+        <center>
+            <h:panelGrid id="gridPrincipal">
+            	<h:panelGrid columns="3">
+               		<h:panelGrid columns="1">
+						<h:outputLabel value="#{msg.tabPrincipalEstado}:" for="selectMenuEstado" />
+						<h:selectOneMenu immediate="true" id="selectMenuEstado" value="#{manterColaborador.colaborador.estado}"  converter="simpleEntityConverter" style="width : 200px">
+							<f:selectItem itemLabel="#{msg.ooSelecione}" itemValue="" />
+							<t:selectItems id="itemsEstado" value="#{manterListagem.cache['br.ueg.openodonto.dominio.constante.TiposUF'].dominio}" var="estado" itemLabel="#{estado.descricao}" itemValue="#{estado}" />
+						</h:selectOneMenu>
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<oo:label value="#{msg.tabPrincipalCidade}:" for="entradaCidade" />
+						<h:inputText id="entradaCidade"	value="#{manterColaborador.colaborador.cidade}" style="width : 180px"/>
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<oo:label value="#{msg.tabPrincipalEndereco}:" for="entradaEndereco" />
+						<h:inputText id="entradaEndereco" value="#{manterColaborador.colaborador.endereco}" style=" width : 300px;" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<oo:label value="#{msg.tabPrincipalEmail}:" for="entradaEmail" />
+						<h:inputText id="entradaEmail" value="#{manterColaborador.colaborador.email}" style=" width : 200px;" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<h:outputLabel value="#{msg.dataCadastro}:" for="entradaDataCadastro" />
+						<rich:calendar datePattern="dd/MM/yyyy" enableManualInput="false" id="entradaDataCadastro"	value="#{manterColaborador.colaborador.dataCadastro}" inputStyle="width : 180px" >
+							<f:converter converterId="SqlDateConverter" />
+						</rich:calendar>
+					</h:panelGrid>
+                </h:panelGrid>                
+            </h:panelGrid>
+            <h:panelGrid id="gridTextBox">       
+                <h:panelGrid columns="1">
+                    <oo:label value="#{msg.tabPrincipalObs}" for="inTextBoxObs" />
+                    <h:inputTextarea id="inTextBoxObs" value="#{manterColaborador.colaborador.observacao}" style="width : 480px; height : 96px;" />
+                </h:panelGrid>
+            </h:panelGrid>
+        </center>
+    </rich:panel>
+</ui:composition>	

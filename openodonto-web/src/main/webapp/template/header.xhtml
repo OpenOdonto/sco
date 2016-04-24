@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	<link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/css/header.css"	type="text/css" />
+	<a4j:form name="menuForm">
+		<rich:toolBar styleClass="oo-toolbar-menu">
+		    <ui:insert name="menu">
+		        <ui:include src="top-menu.xhtml"/>
+		    </ui:insert>
+		    <a4j:commandButton action="index" image="/images/loago-b.png" styleClass="oo-toolbar-logo"  />
+		</rich:toolBar>
+	</a4j:form>	
+    <div class="oo-background-menu" align="center"/>
+    <rich:spacer height="30px" />
+</ui:composition>

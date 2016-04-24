@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:oo="http://code.google.com/p/openodonto"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+    <rich:panel styleClass="oo-crud-decore-panel">
+        <ui:param name="manage" value="#{mBean.manageQA}" />
+    	<oo:pluginToolTip/>
+        <center>        
+            <a4j:outputPanel ajaxRendered="true">                
+				<h:dataTable id="anamneseValidationTable" value="#{manage.questionariosAdapter}" var="adapter">
+					<h:column>					
+						<rich:message id="qaValidation" for="qaValidation" styleClass="oo-validation-messages" />					
+					</h:column>
+				</h:dataTable>
+			</a4j:outputPanel>				
+            <h:panelGrid id="gridAnamnese">
+                <h:panelGrid columns="1">
+               		<oo:label for="comboQuestionariosAnamnese" value="#{msg.manageAnamneseMenuQuestionario} : " />
+               		<h:panelGrid columns="3">
+	                    <h:selectOneMenu id="comboQuestionariosAnamnese" value="#{manage.add}" style=" width : 500px;">
+	                    	<t:selectItems value="#{list.ALIAS_QUEST.dominio}" var="questionario" itemLabel="#{questionario.nome}" itemValue="#{questionario.codigo}" />
+	                    </h:selectOneMenu>
+	                    <rich:spacer width="8px" />
+   						<a4j:commandButton  image="/images/add.jpg" action="#{manage.acaoAddAnamnese(manage.add)}" reRender="listaAnamneses,panelAnamnese" value="#{msg.manageContactAcaoInserir}" />
+  					</h:panelGrid>
+                </h:panelGrid>                
+                <rich:separator height="1px" style="padding-top : 8px;padding-bottom : 8px" />
+                <h:panelGrid>
+                	<rich:scrollableDataTable width="540px" id="listaAnamneses" rows="5" height="150px" value="#{manage.questionariosAdapter}" var="adapter">
+                		<a4j:support event="onRowClick" eventsQueue="rowclick" reRender="panelAnamnese" rendered="#{not empty adapter}">
+                			<f:setPropertyActionListener target="#{manage.anamnese}" value="#{adapter}" />
+                		</a4j:support>
+                		<rich:column width="16px" id="columnActivatedStatus" style="border : none" >
+                			<a4j:outputPanel ajaxRendered="true">
+                				<h:graphicImage value="#{msg.imgMenuItemChecked}" rendered="#{adapter eq manage.anamnese}" />
+                			</a4j:outputPanel>
+                		</rich:column>
+                		<rich:column width="175px">
+                			<f:facet name="header">
+                				<h:outputText value="Nome" />
+                			</f:facet>
+                			<center>
+                				<h:outputText value="#{adapter.qa.nome}" />
+                			</center>
+                		</rich:column>
+                		<rich:column width="326px" >
+                			<f:facet name="header">
+                				<h:outputText value="Descricao" />
+                			</f:facet>
+                			<center>
+	                			<span onmouseover="tooltip.show('#{adapter.qa.descricao}')" onmouseout="tooltip.hide()">
+		    						<h:outputText id="currentAnamneseDesc" value="#{adapter.qa.descricaoResumida}" />
+		    					</span>
+	    					</center>
+                		</rich:column>
+		    			<rich:column width="16px" style="border-style : none" >
+		    				<center>
+								<a4j:commandButton image="#{msg.imgBotaoFechar}" eventsQueue="rowclick" action="#{manage.acaoRemoveAnamnese(adapter)}" reRender="listaAnamneses,panelAnamnese"/>
+							</center>
+		    			</rich:column>
+                	</rich:scrollableDataTable>
+                </h:panelGrid>
+             </h:panelGrid>
+        </center>
+    </rich:panel>
+	<rich:panel id="panelAnamnese"  style="border-top: none;" styleClass="oo-crud-decore-panel">
+	    <h:panelGrid columns="2">
+	    	<h:panelGroup layout="block" rendered="#{not empty manage.anamnese.qa.nome}" style="font-size : 16px">
+	    		<h:outputLabel for="currentAnamneseNome" value="#{msg.ooNome} : " style="font-weight : bold"  />
+	    		<h:outputText id="currentAnamneseNome" value="#{manage.anamnese.qa.nome}" />
+	    	</h:panelGroup>
+	    	<h:panelGroup layout="block" rendered="#{not empty manage.anamnese.qa.descricao}" style="font-size : 16px">
+	    		<h:outputLabel for="currentAnamneseDesc" value="#{msg.produtoDescricao} : " style="font-weight : bold" />
+	    		<span onmouseover="tooltip.show('#{manage.anamnese.qa.descricao}')" onmouseout="tooltip.hide()">
+	    			<h:outputText id="currentAnamneseDesc" value="#{manage.anamnese.qa.descricaoResumida}" />
+	    		</span>
+	    	</h:panelGroup>
+	    </h:panelGrid>
+	    <rich:spacer height="16px" />		
+		<rich:dataGrid id="gridQuestionario" rendered="#{not empty manage.questionariosAdapter}" value="#{manage.anamnese.questoes}" var="questao" columns="1" >
+			<h:panelGrid width="480">
+				<h:panelGroup layout="block" style="width : 476px">
+					<h:outputLabel value="#{questao.qqa.index + 1}. " styleClass="oo-index-questionario-anamnese" />
+			    	<h:outputLabel value="#{questao.qa.pergunta}" style="font-size : 14px" />
+			    </h:panelGroup>
+			    <rich:spacer height="8px" />
+			    <h:panelGrid columns="1">
+			    		<h:panelGrid columns="2">
+			    			<rich:spacer width="100px" />
+							<h:selectOneRadio id="answerQuestaoSelectRadio" value="#{questao.resposta.resposta}" converter="simpleEntityConverter" styleClass="#{questao.qqa.obrigatoria ? 'oo-negrito' : ''}" style="font-size : 14px;width : 300px">
+								<t:selectItems value="#{list.ALIAS_RESP_ANAMN.dominio}" var="resposta" itemLabel="#{resposta.value}" itemValue="#{resposta}" />
+							</h:selectOneRadio>
+						</h:panelGrid>
+					<h:inputTextarea id="obsQuestaoTextarea" value="#{questao.resposta.observacao}" style="width : 476px" />
+				</h:panelGrid>
+			</h:panelGrid>		
+		</rich:dataGrid>
+	</rich:panel>
+</ui:composition>

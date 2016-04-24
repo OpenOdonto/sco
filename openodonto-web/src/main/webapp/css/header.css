@@ -1,0 +1,67 @@
+.rich-menu-item {
+	font-family: Trebuchet MS;
+	font-weigth: bold;
+}
+
+.rich-menu-item-hover {
+	-moz-opacity: 0.8;
+	filter: opacity(alpha =       8);
+	opacity: 0.8;
+	background-color: #d8edef;
+	border-color: #ACBECE;
+	background-repeat: no-repeat;
+}
+
+.oo-toolbar-menu {
+	margin-top: 10px;
+	vertical-align: botton;
+	background-image: url('../images/menu-fundo.png');
+	border-left-style: none;
+	border-right-style: none;
+	border-top: 15px;
+	height: 64px;
+	background-color: #ACBECE;
+	background-position: center;
+}
+
+.oo-toolbar-logo{
+	width: 320px;
+	height: 123px;
+	vertical-align: middle;
+	position: absolute;
+	margin-left: -250.5px;
+	left: 94.7%;
+	margin-top: -44px;
+	background-repeat: no-repeat;
+}
+
+.oo-background-menu {
+	background-image: url('../images/back-home.png');
+	left: 0;
+	top: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background-repeat: repeat-x;
+}
+
+.oo-dropdow-menu-title {
+	font-family: verdana;
+	font-weigth: bold;
+	color: #f1f2f3;
+	font-size: 20px;
+	padding-left: 8px;
+}
+
+.oo-dropdow-menu-divisor {
+	width: 2px;
+	background-position: top;
+	bottom: 1px;
+	height: 31px;
+	vertical-align: top;
+	position: relative;
+	margin-left: -1px;
+	background-image: url('../images/linhadupla.png');
+	background-repeat: no-repeat;
+}

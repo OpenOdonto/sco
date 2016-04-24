@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+    <rich:columns value="#{search.searchable.facade}" var="facade" >
+        <f:facet name="header">
+            <h:outputText value="#{facade.colunmName}" />
+        </f:facet>
+        <center>
+        	<h:outputText value="#{bean.value[facade.fieldName]}" />
+        </center>
+    </rich:columns>
+</ui:composition>

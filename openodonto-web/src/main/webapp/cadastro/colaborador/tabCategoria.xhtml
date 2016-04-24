@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+    <rich:panel styleClass="oo-crud-decore-panel">
+        <center>
+            <h:panelGrid id="gridCategoria">
+                <h:panelGrid columns="2">
+	                <h:graphicImage value="#{msg.imgBotaoAdd}" onclick="Richfaces.showModalPanel('painelBuscaProduto', {top:'32px'})" />
+	                <a4j:commandLink value="#{categoria.codigo eq 0 ?  msg.manterProdutoAssociarServicos :  msg.manterProdutoAssociarProdutos}" onclick="Richfaces.showModalPanel('painelBuscaProduto', {top:'32px'})" />             
+                </h:panelGrid>
+                <h:panelGrid>
+                    <rich:messages id="messageCategoria" for="messageCategoria" styleClass="oo-validation-messages" />
+                </h:panelGrid>
+            </h:panelGrid>
+        </center>
+	</rich:panel>
+	<rich:panel style="border-top: none;" styleClass="oo-crud-decore-panel">
+		<h:panelGrid columns="3">
+			<h:panelGrid columns="1">
+			    <h:outputText value="#{categoria.codigo eq 0 ?  msg.manterProdutoServicosAssociados : msg.manterProdutoProdutosAssociados}:" styleClass="oo-negrito" />
+			    <rich:scrollableDataTable onRowMouseOver="dataTabeMouseOver(this)" onRowMouseOut="dataTabeMouseOut(this,'#{a4jSkin.tableBackgroundColor}')" value="#{manterColaborador.colaborador.produtos}" var="produto" id="listaProdutos" rows="15" height="320px" width="400px">
+			        <rich:column>
+			            <f:facet name="header">
+			                <h:outputText value="#{msg.ooCodigo}" />
+			            </f:facet>
+			            <center>
+			            	<h:outputText value="#{produto.codigo}" />
+			            </center>
+			        </rich:column>			        
+			        <rich:column>
+			            <f:facet name="header">
+			            	<h:outputText value="#{msg.ooNome}" />
+			            </f:facet>
+			            <center>
+			            	<h:outputText value="#{produto.nome}" />
+			            </center>
+			        </rich:column>
+			        <rich:column>
+			            <f:facet name="header">
+			            	<h:outputText value="#{msg.produtoDescricao}" />
+			            </f:facet>
+			            <center>
+			            	<h:outputText value="#{produto.descricaoResumida}" />
+			            </center>			        
+			        </rich:column>
+			        <rich:column>
+			            <f:facet name="header">
+			                <h:outputText value="#{msg.manageProductAcaoRemover}" />
+			            </f:facet>
+						<center>
+							<a4j:commandButton value="#{msg.manageContactAcaoRemover}" action="#{manterColaborador.manageProduto.acaoRemoverProduto}" reRender="listaProdutos"  image="#{msg.imgBotaoMiniRemove}">
+							    <f:setPropertyActionListener value="#{produto}" target="#{manterColaborador.manageProduto.produto}" />
+							</a4j:commandButton>
+						</center>
+			        </rich:column>
+			    </rich:scrollableDataTable>
+			</h:panelGrid>
+		</h:panelGrid>
+	</rich:panel>
+ </ui:composition>

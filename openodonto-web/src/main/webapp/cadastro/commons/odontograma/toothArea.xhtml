@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:oo="http://code.google.com/p/openodonto"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	<a4j:commandLink id="shape-#{face}-#{id}" shape="#{shape}"
+		coords="#{coords}" action="#{manage.acaoManageProcedimento}"
+		oncomplete="Richfaces.showModalPanel('procedimentosOdontograma',{top:'32px'})"
+		reRender="formProcedimentosOdontograma,procedimentosOdontogramaMeta"
+		onmouseover="restoreBg($('#{formName}:#{id}'),#{bgHighlightImg});this.style.cursor='pointer';"
+		onmouseout="restoreBg($('#{formName}:#{id}'),'#{cxName}#{bgDenteMapImg}');" title="#{meta.procedimentos[face]} procedimento(s).">	
+		<f:setPropertyActionListener value="#{numero}" target="#{manage.numero}">
+		    <f:convertNumber integerOnly="true" type="number" maxIntegerDigits="2" minIntegerDigits="1" />
+		</f:setPropertyActionListener>
+		<f:setPropertyActionListener value="#{face}" target="#{manage.face}" />
+	</a4j:commandLink>
+</ui:composition>

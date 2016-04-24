@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:oo="http://code.google.com/p/openodonto"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<rich:panel styleClass="oo-crud-decore-panel">
+		<a4j:loadScript src="/js/jquery.price_format.1.3.js" />
+		<oo:pluginToolTip/>
+		<ui:param name="cxName" value="#{facesContext.externalContext.requestContextPath}" />
+		<ui:param name="bgDenteRooImg" value="#{msg.odontogramaDenteRootImg}" />
+		<ui:param name="bgDenteRootDisableImg" value="#{msg.odontogramaDenteRootDisableImg}" />
+		<ui:param name="bgDenteRootSelected" value="#{msg.odontogramaDenteRoorSelectImg}" />
+		<ui:param name="bgDenteMapImg" value="#{msg.odontogramaDenteMapImg}" />
+		<ui:param name="bgDenteMapDisableImg" value="#{msg.odontogramaDenteMapDisableImg}"/>
+		<ui:param name="bgFaceLeftImg" value="'#{cxName}#{msg.odontogramaDenteFaceEsquerdaImg}'" />
+		<ui:param name="bgFaceRightImg" value="'#{cxName}#{msg.odontogramaDenteFaceDireitaImg}'" />
+		<ui:param name="bgFaceTopImg" value="'#{cxName}#{msg.odontogramaDenteFaceSuperiorImg}'" />
+		<ui:param name="bgFaceBtnImg" value="'#{cxName}#{msg.odontogramaDenteFaceInferiorImg}'" />
+		<ui:param name="bgFaceCenterImg" value="'#{cxName}#{msg.odontogramaDenteFaceCentralImg}'" />
+		<ui:param name="manage" value="#{manterPaciente.manageOdontograma}"/>
+		<rich:panel>
+		<h:panelGrid columns="4" id="gridOdontogramaMeta">
+		    <h:panelGroup layout="block" rendered="#{not empty manage.odontograma.id}">
+				<h:outputLabel value="Codigo : " style="font-weight : bold" />
+				<h:outputText value="#{manage.odontograma.id}" />
+			</h:panelGroup>
+			<h:panelGroup layout="block" rendered="#{not empty manage.odontograma.nome}">
+				<h:outputLabel value="Nome : " style="font-weight : bold" />
+				<h:outputText value="#{manage.odontograma.nome}" />
+			</h:panelGroup>
+			<h:panelGroup layout="block" rendered="#{not empty manage.odontograma.data}">
+				<h:outputLabel value="Data : " style="font-weight : bold" />
+				<h:outputText value="#{manage.odontograma.data}" />
+			</h:panelGroup>
+			<h:panelGroup layout="block" rendered="#{not empty manage.odontograma.descricao}">
+				<h:outputLabel value="Descricao : " style="font-weight : bold" />
+				<span onmouseover="tooltip.show('#{manage.odontograma.descricao}');" onmouseout="tooltip.hide()">
+					<h:outputText value="#{manage.odontograma.descricaoResumida}" />
+				</span>
+			</h:panelGroup>
+		</h:panelGrid>
+		</rich:panel>
+		<rich:spacer height="16px" />
+		<h:panelGroup>
+			<h:panelGrid>
+				<h:outputLabel for="gridFiltroProcedimentos" value="Filtrar procedimentos : " />
+				<rich:dataGrid id="gridFiltroProcedimentos" value="#{manage.odontogramaStatusFilters}" var="status" columns="4" elements="8" width="480px">
+					<rich:panel onclick="toggleChkBox(#{rich:element('statusChkBox')});reCountProc()" onmouseover="dataTabeMouseOver(this)" onmouseout="dataTabeMouseOut(this,'#{a4jSkin.tableBackgroundColor}')" styleClass="block" bodyClass="oo-panel-body-tgg" style="height : 48px ; width : 120px;border-style : none" >
+						<center>				    
+					    	<h:panelGrid style="text-align : center;height : 48px">				        
+					    		<h:outputText value="#{status.tipo.nome}" style="font-size: 12px;font-weight:bold;" />
+					    		<h:selectBooleanCheckbox id="statusChkBox" value="#{status.filter}" onclick="toggleChkBox(this);reCountProc()"/>			    	
+					    	</h:panelGrid>					
+					    </center>
+					</rich:panel>
+				</rich:dataGrid>
+			</h:panelGrid>
+		</h:panelGroup>
+		<a4j:jsFunction name="reCountProc" action="#{manage.updateMeta}" reRender="gridOdontograma" />		
+		<rich:separator height="2px" style="padding-bottom : 16px "/>
+    	<center>
+       	    <h:panelGroup id="gridOdontograma" layout="block">
+        	    <h:panelGrid columns="16" id="gridDentesSuperiores">        	    	        	    	
+        	    	<oo:toothMap numero="18" graphicUp="#{msg.odontogramaDente18}"/>
+        	    	<oo:toothMap numero="17" graphicUp="#{msg.odontogramaDente17}"/>
+        	    	<oo:toothMap numero="16" graphicUp="#{msg.odontogramaDente16}"/>
+        	    	<oo:toothMap numero="15" graphicUp="#{msg.odontogramaDente15}"/>
+        	    	<oo:toothMap numero="14" graphicUp="#{msg.odontogramaDente14}"/>
+        	    	<oo:toothMap numero="13" graphicUp="#{msg.odontogramaDente13}"/>
+        	    	<oo:toothMap numero="12" graphicUp="#{msg.odontogramaDente12}"/>
+        	    	<oo:toothMap numero="11" graphicUp="#{msg.odontogramaDente11}"/>
+        	    	<oo:toothMap numero="21" graphicUp="#{msg.odontogramaDente21}"/>
+        	    	<oo:toothMap numero="22" graphicUp="#{msg.odontogramaDente22}"/>
+        	    	<oo:toothMap numero="23" graphicUp="#{msg.odontogramaDente23}"/>
+        	    	<oo:toothMap numero="24" graphicUp="#{msg.odontogramaDente24}"/>
+        	    	<oo:toothMap numero="25" graphicUp="#{msg.odontogramaDente25}"/>
+        	    	<oo:toothMap numero="26" graphicUp="#{msg.odontogramaDente26}"/>
+        	    	<oo:toothMap numero="27" graphicUp="#{msg.odontogramaDente27}"/>
+        	    	<oo:toothMap numero="28" graphicUp="#{msg.odontogramaDente28}"/>
+        	    </h:panelGrid>
+        	    <rich:separator height="1" lineType="solid" />
+        	    <h:panelGrid columns="16" id="gridDentesInferiores">
+        	    	<oo:toothMap numero="48" graphicDown="#{msg.odontogramaDente48}"/>
+        	    	<oo:toothMap numero="47" graphicDown="#{msg.odontogramaDente47}"/>
+        	    	<oo:toothMap numero="46" graphicDown="#{msg.odontogramaDente46}"/>
+        	    	<oo:toothMap numero="45" graphicDown="#{msg.odontogramaDente45}"/>
+        	    	<oo:toothMap numero="44" graphicDown="#{msg.odontogramaDente44}"/>
+        	    	<oo:toothMap numero="43" graphicDown="#{msg.odontogramaDente43}"/>
+        	    	<oo:toothMap numero="42" graphicDown="#{msg.odontogramaDente42}"/>
+        	    	<oo:toothMap numero="41" graphicDown="#{msg.odontogramaDente41}"/>        	    	
+        	    	<oo:toothMap numero="31" graphicDown="#{msg.odontogramaDente31}"/>
+        	    	<oo:toothMap numero="32" graphicDown="#{msg.odontogramaDente32}"/>
+        	    	<oo:toothMap numero="33" graphicDown="#{msg.odontogramaDente33}"/>
+        	    	<oo:toothMap numero="34" graphicDown="#{msg.odontogramaDente34}"/>
+        	    	<oo:toothMap numero="35" graphicDown="#{msg.odontogramaDente35}"/>
+        	    	<oo:toothMap numero="36" graphicDown="#{msg.odontogramaDente36}"/>
+        	    	<oo:toothMap numero="37" graphicDown="#{msg.odontogramaDente37}"/>
+        	    	<oo:toothMap numero="38" graphicDown="#{msg.odontogramaDente38}"/>
+        	    </h:panelGrid>
+       	    </h:panelGroup>        	    
+			<h:panelGroup layout="block">
+				<h:panelGrid columns="3">        	    
+	        	    <rich:panel rendered="true">
+		        	    	<h:panelGrid style="text-align : center">
+		        	    	    <h:outputText value="Todos superiores" />
+		        	    	    <rich:spacer height="8px" />
+		        	    	    <h:panelGroup layout="block">
+		        	    			<a4j:commandButton image="#{msg.odontogramaInfoRedImg}" onmouseover="tooltip.show('Extraidos')" onmouseout="tooltip.hide();" reRender="gridDentesSuperiores" value="Extraido" action="#{manage.acaoRemoverTodosSuperior}" />
+		        	    			<rich:spacer width="8px" />
+		        	    			<a4j:commandButton image="#{msg.odontogramaInfoBlueImg}" onmouseover="tooltip.show('Implantadados')" onmouseout="tooltip.hide();" reRender="gridDentesSuperiores" value="Implantado" action="#{manage.acaoImplantarTodosSuperior}"/>
+		        	    			<rich:spacer width="8px" />
+		        	    			<a4j:commandButton image="#{msg.odontogramaInfoGrayImg}" onmouseover="tooltip.show('Normais')" onmouseout="tooltip.hide();" reRender="gridDentesSuperiores" value="Normal" action="#{manage.acaoNormalizarTodosSuperior}" />
+		        	    		</h:panelGroup>
+		        	    	</h:panelGrid>
+	        	    </rich:panel>
+	        	    <rich:spacer height="72px" />
+					<rich:panel rendered="true">
+					    <h:panelGrid style="text-align : center">
+					    	<h:outputText value="Todos inferiores" />
+					    	<rich:spacer height="8px" />
+					    	<h:panelGroup layout="block">
+		        	    		<a4j:commandButton image="#{msg.odontogramaInfoRedImg}" onmouseover="tooltip.show('Extraidos')" onmouseout="tooltip.hide();" reRender="gridDentesInferiores" value="Extraido"  action="#{manage.acaoRemoverTodosInferior}" />
+		        	    		<rich:spacer width="8px" />
+		        	    		<a4j:commandButton image="#{msg.odontogramaInfoBlueImg}" onmouseover="tooltip.show('Implantados')" onmouseout="tooltip.hide();" reRender="gridDentesInferiores" value="Implantado"   action="#{manage.acaoImplantarTodosInferior}" />
+		        	    		<rich:spacer width="8px" />
+		        	    		<a4j:commandButton image="#{msg.odontogramaInfoGrayImg}" onmouseover="tooltip.show('Normais')" onmouseout="tooltip.hide();" reRender="gridDentesInferiores" value="Normal" action="#{manage.acaoNormalizarTodosInferior}"  />
+					    	</h:panelGroup>
+	        	    	</h:panelGrid>
+	        	    </rich:panel>	
+				</h:panelGrid>			
+			</h:panelGroup>
+        </center>
+        <rich:separator height="2px" style="padding-bottom : 16px "/>
+        <center>
+        <h:panelGrid>
+            <rich:togglePanel switchType="client" id="toggle" stateOrder="add,form" style="width : 608px;">
+     			<f:facet name="add">
+     				<h:panelGroup style="text-align : right" layout="block">
+           				<rich:toggleControl>
+                			<h:graphicImage id="pic" style="border-style : none" value="#{msg.imgBotaoAdd}" onmouseover="tooltip.show('Adicionar Odontograma')" onmouseout="tooltip.hide()" />
+            			</rich:toggleControl>
+            		</h:panelGroup>
+     			</f:facet>
+     			<f:facet name="form">
+     				<f:subview id="subViewAddOdontograma">
+     				    <center>
+     					<rich:panel id="panelAddOdontograma" style="width : 608px;" >
+	     					<h:panelGroup style="text-align : right" layout="block">
+	     						<rich:toggleControl switchToState="add" styleClass="rich-stglpnl-marker" >
+				            		<h:graphicImage id="hideOadd" style="border-style : none" value="#{msg.imgBotaoFechar}" onmouseover="tooltip.show('Esconder cadastro')" onmouseout="tooltip.hide()" />
+	     						</rich:toggleControl>     						
+	     					</h:panelGroup>
+     						<h:panelGrid columns="3">
+     							<h:panelGrid>
+     								<oo:label for="entradaONome" value="Nome do odontograma : " required="true" />
+     								<h:inputText id="entradaONome" value="#{manage.nomeOAdd}" style="width : 278px" />
+     							</h:panelGrid>
+     							<rich:spacer width="8px" />
+     							<h:panelGrid>
+     								<oo:label for="entradaOData" value="Data" required="true" />
+									<rich:calendar id="entradaOData" datePattern="dd/MM/yyyy" enableManualInput="false" value="#{manage.dataOadd}" inputStyle="width : 96px" >
+										<f:converter converterId="SqlDateConverter" />
+									</rich:calendar>
+     							</h:panelGrid>
+     						</h:panelGrid>
+     						<h:panelGrid>
+     						    <oo:label for="entradaODescricao" value="Descricao" />
+     							<h:inputTextarea id="entradaODescricao" value="#{manage.descricaoOAdd}" style="width : 410px" />
+     							<rich:spacer height="8px" />
+								<h:panelGroup style="text-align : right" layout="block" >
+     								<a4j:commandButton value="adicionar" reRender="listaOdontogramas,panelAddOdontograma" action="#{manage.acaoAddOdontograma}" />
+     							</h:panelGroup>
+     						</h:panelGrid>
+     					</rich:panel>
+     					</center>
+     				</f:subview>
+     			</f:facet>
+     		</rich:togglePanel>
+            <h:outputText value="Odontogramas : " />
+        	<h:panelGrid columns="1">
+        	<a4j:region>
+        		<rich:messages id="#{manage.displayer.output}" for="#{manage.displayer.output}"  styleClass="oo-validation-messages" />
+        	    <rich:dataTable id="listaOdontogramas" onRowMouseOver="dataTabeMouseOver(this)" onRowMouseOut="dataTabeMouseOut(this,'#{a4jSkin.tableBackgroundColor}')" width="608px"  rows="5" value="#{manage.odontogramas}" var="adapter">
+				  	<a4j:support status="status" event="onRowDblClick" reRender="gridOdontograma,gridOdontogramaMeta" action="#{manage.updateMeta}" rendered="#{not empty adapter}">
+   	    				<f:setPropertyActionListener value="#{adapter}" target="#{manage.odontogramaAdapter}" />
+   					</a4j:support>
+        	        <rich:column width="175px" filterExpression="#{(empty manage.filterNomeOAdd) or (manage.filterNomeOAdd eq '') ? true : fn:containsIgnoreCase(adapter.odontograma.nome , manage.filterNomeOAdd)}">
+        	        	<f:facet name="header">
+        	        		<t:div>
+        	        			<h:outputText value="Nome" />
+	                	        <h:commandButton image="#{msg.imgBotaoPesquisarTabela}" style="padding-left : 8px" onclick="toggleComp(#{rich:element('nomeOFilter')})" />
+                	        	<center>
+                	        	    <h:inputText id="nomeOFilter" value="#{manage.filterNomeOAdd}" style="width : 150px;display : none" >
+                	        	    	<a4j:support event="onkeyup" reRender="listaOdontogramas" ignoreDupResponses="true" requestDelay="700" oncomplete="showComp(#{rich:element('nomeOFilter')});setCaretToEnd(event);" />               	        	    	
+                	        	    </h:inputText>
+                    			</center>
+        	        		</t:div>        	        	     
+        	        	</f:facet>
+        	        	<h:panelGroup layout="block" style="text-align : center">
+                	   		<rich:inplaceInput onmouseover="tooltip.show('#{adapter.nome}');" onmouseout="tooltip.hide();" id="inplaceNome" viewClass="oo-odontograma-procedimentos" inputWidth="165px" onblur="align_div(this.parentNode.parentNode,'center')" oneditactivation="jQuery(this.firstChild).val('#{adapter.nome}');align_div(this.parentNode,'left');" value="#{adapter.abstractNome}">
+                	   			<a4j:support event="onchange" action="#{adapter.formatNome}" reRender="inplaceNome">
+                	   				<a4j:actionparam name="nome" value="jQuery(#{rich:element('inplaceNome')}.firstChild).val()" noEscape="true" assignTo="#{adapter.nome}" /> 
+                	   			</a4j:support>
+                	   		</rich:inplaceInput>        	        	
+        	        	</h:panelGroup>
+        	        </rich:column>
+        	        <rich:column width="75px" filterExpression="#{(empty manage.filterDataOAdd) or (manage.filterDataOAdd eq '__/__/____') ? true : adapter.data eq manage.filterDataOAdd}">
+        	        	<f:facet name="header">
+        	        		<t:div>
+        	        			<h:outputText value="Data" />
+	                	        <h:commandButton image="#{msg.imgBotaoPesquisarTabela}" style="padding-left : 8px" onclick="toggleComp(#{rich:element('dataOFilter')})" />
+                	        	<center>
+                	        	    <h:inputText id="dataOFilter" value="#{manage.filterDataOAdd}" style="width : 80px;display : none" >
+                	        	    	<a4j:support onsubmit="if(!isValidDate(#{rich:element('dataOFilter')})){return false;}" event="onkeyup" reRender="listaOdontogramas" ignoreDupResponses="true" requestDelay="700" oncomplete="showComp(#{rich:element('dataOFilter')});setCaretToEnd(event);" />
+                	        	    	<rich:jQuery selector="#dataOFilter" query="mask('99/99/9999')" timing="onload" />                	        	    	
+                	        	    </h:inputText>
+                    			</center>
+        	        		</t:div>
+        	        	</f:facet>
+        	        	<h:panelGroup layout="block" style="text-align : center">        	        	
+        	        		<h:outputText value="#{adapter.odontograma.data}" />	
+        	        	</h:panelGroup>
+        	        </rich:column>
+        	        <rich:column width="300px" filterExpression="#{(empty manage.filterDescricaoOAdd) or (manage.filterDescricaoOAdd eq '') ? true : fn:containsIgnoreCase(adapter.descricao , manage.filterDescricaoOAdd)}">
+        	        	<f:facet name="header">
+        	        		<t:div>
+        	        			<h:outputText value="Descricao" />
+	                	        <h:commandButton image="#{msg.imgBotaoPesquisarTabela}" style="padding-left : 8px" onclick="toggleComp(#{rich:element('descOFilter')})" />
+                	        	<center>
+                	        	    <h:inputText id="descOFilter" value="#{manage.filterDescricaoOAdd}" style="width : 200px;display : none" >
+                	        	    	<a4j:support event="onkeyup" reRender="listaOdontogramas" ignoreDupResponses="true" requestDelay="700" oncomplete="showComp(#{rich:element('descOFilter')});setCaretToEnd(event);" />               	        	    	
+                	        	    </h:inputText>
+                    			</center>
+        	        		</t:div>        	        		
+        	        	</f:facet>
+                		<h:panelGroup layout="block" style="text-align : center">                	    
+                	   		<rich:inplaceInput onmouseover="tooltip.show('#{adapter.descricao}');" onmouseout="tooltip.hide();" id="inplaceDesc" viewClass="oo-odontograma-procedimentos" inputWidth="280px" onblur="align_div(this.parentNode.parentNode,'center')" oneditactivation="jQuery(this.firstChild).val('#{adapter.descricao}');align_div(this.parentNode,'left');" value="#{adapter.abstractDescricao}">
+                	   			<a4j:support event="onchange" action="#{adapter.formatDescricao}" reRender="inplaceDesc">
+                	   				<a4j:actionparam name="desc" value="jQuery(#{rich:element('inplaceDesc')}.firstChild).val()" noEscape="true" assignTo="#{adapter.descricao}" /> 
+                	   			</a4j:support>
+                	   		</rich:inplaceInput>                	   		            	    	
+                		</h:panelGroup>
+        	        </rich:column>
+                	<rich:column width="36px">
+                	    <h:panelGroup layout="block" style="text-align : center">
+							<a4j:commandButton status="status" value="#{msg.manageContactAcaoRemover}" onclick="if(!confirm('#{msg.DesejaExcluir}')){return false}" action="#{manage.acaoRemoverOdontograma}" reRender="gridOdontogramaMeta,listaOdontogramas,gridOdontograma" image="#{msg.imgBotaoMiniRemove}" onmouseover="tooltip.show('Remover');" onmouseout="tooltip.hide()">
+							    <f:setPropertyActionListener value="#{adapter}" target="#{manage.odontogramaDelete}" />
+							</a4j:commandButton>                	    	
+                	    </h:panelGroup>
+                	</rich:column>                	
+        	    </rich:dataTable>
+				<rich:datascroller for="listaOdontogramas" maxPages="20" align="center" id="dataScrollerOdontograma"  />
+				</a4j:region>
+        	</h:panelGrid>
+        </h:panelGrid>
+        </center>
+    </rich:panel>
+</ui:composition>	

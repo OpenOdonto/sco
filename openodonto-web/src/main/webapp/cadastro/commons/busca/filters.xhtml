@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+    <rich:dataGrid value="#{search.searchable.filters}" var="filter" rowKeyVar="index" id="filters#{searchName}" columns="2" width="320px" >
+        <h:panelGrid id="grid#{filter.name}#{searchName}" columns="2">
+         <h:outputLabel id="filterLabel#{searchName}" value="#{filter.label} : " style="width : 80px;white-space:nowrap"/>
+            <rich:dataGrid var="input" value="#{filter.field.inputFields}" columns="1" elements="1" columnClasses="oo-border-none" styleClass="oo-border-none">
+                <h:inputText id="filterSearchInput#{searchName}" rendered="#{empty input.domain}" value="#{input.value}" styleClass="#{input.mask.styleClass}" onkeypress="if(doEnter(event)){pesquisar#{search.name}();}" />
+                <h:selectOneMenu id="filterSearchSelect#{searchName}" rendered="#{not empty input.domain}" value="#{input.value}" converter="simpleEntityConverter" style="width : 136px">
+                    <f:selectItem itemLabel="#{msg.ooSelecione}" itemValue="" />
+                    <t:selectItems id="filterSearchOption#{searchName}" value="#{input.domain}" var="select" itemLabel="#{select}" itemValue="#{select}" />
+                </h:selectOneMenu>
+            </rich:dataGrid>
+        </h:panelGrid>
+    </rich:dataGrid>
+</ui:composition>
