@@ -39,3 +39,7 @@ Para as faces do dente onde existem procedimentos vinculados, um pequeno ponto v
 <br/><br/>
 
 [Mais/More ...](https://github.com/OpenOdonto/sco/wiki/System-Features)
+
+## Documentação de negócio / Business documentation
+1. Acesse no Google Drive [AQUI](https://drive.google.com/open?id=0B-d5JP-RE3s0WUtGb083RVFON1E)
+
