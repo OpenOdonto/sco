@@ -31,6 +31,7 @@ Tela inicial
 
 ![sides-tooth-screen](https://drive.google.com/uc?export=view&id=0B-d5JP-RE3s0Nk9iSlpnbTQ3XzQ)
 Para as faces do dente onde existem procedimentos vinculados, um pequeno ponto vermelho é utilizado para marcar a condição.
+**Só funciona no Firefox/ Only works on Firefox**.
 <br/><br/>
 
 ![anamnese-screen](https://drive.google.com/uc?export=view&id=0B-d5JP-RE3s0YWJsNVBZcmRlcWM)
